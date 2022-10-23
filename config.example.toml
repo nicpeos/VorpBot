@@ -1,0 +1,30 @@
+[discord]
+token = ""                      # Your bot token
+guilds = []                     # An array of guild IDs. This will be used to install the slash commands on th
+poracle_id = 0                  # The User ID of your Poracle Discord Bot
+trash_channel_id = 0            # A channel ID to send Poracle commands in. Make sure your Poracle Bot has access to it
+
+
+[poracle]
+secret = ""                     # Your Poracle API secret configured in your config
+url = "http://127.0.0.1:4201"   # Your Poracle URL
+
+
+[db]                            # DB access for a special VorpBot database
+username = ""
+password = ""
+host = "0.0.0.0"
+port = 3306
+database = "vorpbot"
+
+
+[selector]
+
+[selector.static_embed]
+description = "Here you can select which areas to receive notifications for. Just click the blue button below this text."
+footer = "If you don't see a button, please update Discord."
+button = "Select areas"
+
+[selector.personal]
+title = "Choose your areas"
+description = "Click on the field below this text to select your areas.\n\n**Selected areas:**"
