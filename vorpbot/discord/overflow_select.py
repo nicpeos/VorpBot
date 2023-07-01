@@ -15,7 +15,7 @@ class OverflowView(ui.View):
         current_select: ui.Select
         for i, option in enumerate(options):
             if i % 25 == 0:
-                if len(self.children) == max_options:
+                if len(self.children) == max_options + 1:
                     break
 
                 current_select = ui.Select(min_values=0)
