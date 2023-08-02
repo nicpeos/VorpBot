@@ -29,17 +29,8 @@ class SelectorView(OverflowView):
 
         role_names = [r.name.casefold() for r in member.roles]
 
-        emoji_range_start = ord("\U0001F300")
-        emoji_range_end = ord("\U0001F64F")
-
-        def custom_sort_key(a: Area):
-            char_code = ord(area.name[0])
-            if emoji_range_start <= char_code <= emoji_range_end:  # is emoji?
-                return 0, a.name
-            return 1, a.name
-
         options = []
-        for area in sorted(areas, key=custom_sort_key):
+        for area in sorted(areas, key=lambda a: a.name):
             if str(area.id) not in self._area_to_role:
                 continue
             options.append(
