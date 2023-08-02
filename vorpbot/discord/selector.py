@@ -50,7 +50,13 @@ class SelectorView(OverflowView):
                 self.embed.description += f"▶ {area.name}\n"
 
     async def select_callback(self, interaction: discord.Interaction) -> None:
-        roles = []
+        roles = self._member.roles
+
+        for area in self._areas:
+            for role in roles:
+                if area.name == role.name:
+                    roles.remove(role)
+
         for value in self.selected_values:
             role = self._area_to_role.get(value)
             if role is None:
