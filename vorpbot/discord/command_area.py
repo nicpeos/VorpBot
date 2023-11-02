@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING
 import discord
 from discord import app_commands, ui
 
+from vorpbot.config import config
 from vorpbot.db.model import Area
 from vorpbot.manager.area_manager import add_area
 from .overflow_select import OverflowView
@@ -52,7 +53,13 @@ class AreaNameModal(ui.Modal, title="Add an area"):
 
     async def on_submit(self, interaction: discord.Interaction) -> None:
         areas = await self._client.poracle.get_geofences()
-        options = [discord.SelectOption(label=a.name, description=a.group) for a in areas]
+
+        options = []
+        for area in areas:
+            if any(1 for p in config.poracle.blacklisted_prefixes if area.name.startswith(p)):
+                continue
+            options.append(discord.SelectOption(label=area.name, description=area.group))
+
         view = AreaChooseView(client=self._client, name=self.name.value, abbr=self.abbreviation.value, options=options)
         await interaction.response.send_message(embed=view.embed, view=view)
 

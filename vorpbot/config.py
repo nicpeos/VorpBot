@@ -14,6 +14,7 @@ class Discord(BaseModel):
 
 
 class Poracle(BaseModel):
+    blacklisted_prefixes: list[str] = []
     secret: str
     url: str
 
@@ -38,7 +39,6 @@ class Personal(BaseModel):
 
 
 class Selector(BaseModel):
-    blacklisted_prefixes: list[str] = []
     static_embed: StaticEmbed
     personal: Personal
 

@@ -8,6 +8,7 @@ trash_channel_id = 0            # A channel ID to send Poracle commands in. Make
 [poracle]
 secret = ""                     # Your Poracle API secret configured in your config
 url = "http://127.0.0.1:4201"   # Your Poracle URL
+blacklisted_prefixes = []
 
 
 [db]                            # DB access for a special VorpBot database
@@ -19,7 +20,6 @@ database = "vorpbot"
 
 
 [selector]
-blacklisted_prefixes = []
 
 [selector.static_embed]
 description = "Here you can select which areas to receive notifications for. Just click the blue button below this text."
