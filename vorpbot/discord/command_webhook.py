@@ -18,7 +18,7 @@ class WebhookCommandGroup(app_commands.Group):
     @app_commands.command(name="add", description="Add a webhook")
     @discord.app_commands.default_permissions(administrator=True)
     @app_commands.checks.has_permissions(administrator=True)
-    async def add_selector(self, interaction: discord.Interaction, channel_id: int) -> None:
-        channel = await interaction.guild.fetch_channel(channel_id)
+    async def add_selector(self, interaction: discord.Interaction, channel_id: str) -> None:
+        channel = await interaction.guild.fetch_channel(int(channel_id))
         wh = await channel.create_webhook(name="Poracle managed by VorpBot")
         await interaction.response.send_message("`" + wh.url + "`")
