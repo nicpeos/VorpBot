@@ -21,6 +21,9 @@ class SelectorView(OverflowView):
 
         self._area_to_role: dict[str, discord.Role] = {}
         for area in areas:
+            if any(1 for p in config.selector.blacklisted_prefixes if area.name.startswith(p)):
+                continue
+
             role = next((r for r in roles if r.name.casefold() == area.name.casefold()), None)
             if role is None:
                 print(f"Unknown role for area {area.name}. That's bad!")

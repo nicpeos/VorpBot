@@ -7,6 +7,7 @@ from vorpbot.poracle import PoracleApi
 from .command_area import AreaCommandGroup
 from .command_selector import SelectorCommandGroup, SELECTOR_BUTTON
 from .command_template import TemplateCommandGroup
+from .command_webhook import WebhookCommandGroup
 from .selector import Selector
 
 
@@ -19,7 +20,12 @@ class VorpBotClient(discord.Client):
     async def setup_hook(self) -> None:
         e = await self.poracle.get_geofences()
 
-        for command in (AreaCommandGroup(self), TemplateCommandGroup(self), SelectorCommandGroup(self)):
+        for command in (
+            AreaCommandGroup(self),
+            TemplateCommandGroup(self),
+            SelectorCommandGroup(self),
+            WebhookCommandGroup(self),
+        ):
             self.tree.add_command(command)
 
         for guild_id in config.discord.guilds:
