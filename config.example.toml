@@ -19,6 +19,7 @@ database = "vorpbot"
 
 
 [selector]
+blacklisted_prefixes = []
 
 [selector.static_embed]
 description = "Here you can select which areas to receive notifications for. Just click the blue button below this text."
